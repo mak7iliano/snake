@@ -23,7 +23,7 @@ html, body {
 }
 
 body {
-    background: url("../_images/bg.jpg") center center no-repeat;
+    background: url("../images/bg.jpg") center center no-repeat;
     background-size: cover;
     position: relative;
 
@@ -36,7 +36,7 @@ body {
         @include translateXY(-50%, -50%);
         width: 128px;
         height: 128px;
-        background: url("../_images/pause.png") center center #ffffff;
+        background: url("../images/pause.png") center center #ffffff;
         opacity: 0;
         @include transition-duration(0.3s);
         z-index: -1;
