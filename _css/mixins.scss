@@ -1,0 +1,230 @@
+// default mixins
+@mixin box-sizing($boxsizing) {
+    -moz-box-sizing: $boxsizing;
+    -webkit-box-sizing: $boxsizing;
+    box-sizing: $boxsizing;
+}
+$bb: border-box;
+
+@mixin transition-duration($duration) {
+    -webkit-transition-duration: $duration;
+    -moz-transition-duration: $duration;
+    -o-transition-duration: $duration;
+    -ms-transition-duration: $duration;
+    transition-duration: $duration;
+}
+
+@mixin transition-origin($origin) {
+    -webkit-transform-origin: $origin;
+    -moz-transform-origin: $origin;
+    -o-transform-origin: $origin;
+    -ms-transform-origin: $origin;
+    transform-origin: $origin;
+}
+
+@mixin transition-property ($property) {
+    -webkit-transition-property: $property;
+    -moz-transition-property: $property;
+    -o-transition-property: $property;
+    -ms-transition-property: $property;
+    transition-property: $property;
+}
+
+@mixin scale ($scale) {
+    -moz-transform: scale($scale, $scale);
+    -webkit-transform: scale($scale, $scale);
+    -o-transform: scale($scale, $scale);
+    -ms-transform: scale($scale, $scale);
+    transform: scale($scale, $scale);
+}
+
+@mixin column-count ($count) {
+    -webkit-column-count: $count;
+    -moz-column-count: $count;
+    column-count: $count;
+}
+
+@mixin translate ($x, $y, $z) {
+    -moz-transform: translate3d($x, $y, $z);
+    -webkit-transform: translate3d($x, $y, $z);
+    -o-transform: translate3d($x, $y, $z);
+    -ms-transform: translate3d($x, $y, $z);
+    transform: translate3d($x, $y, $z);
+}
+
+@mixin translateXY ($x, $y) {
+    -moz-transform: translate($x, $y);
+    -webkit-transform: translate($x, $y);
+    -o-transform: translate($x, $y);
+    -ms-transform: translate($x, $y);
+    transform: translate($x, $y);
+}
+
+@mixin translateX ($x) {
+    -moz-transform: translateX($x);
+    -webkit-transform: translateX($x);
+    -o-transform: translateX($x);
+    -ms-transform: translateX($x);
+    transform: translateX($x);
+}
+
+@mixin translateY ($y) {
+    -moz-transform: translateY($y);
+    -webkit-transform: translateY($y);
+    -o-transform: translateY($y);
+    -ms-transform: translateY($y);
+    transform: translateY($y);
+}
+
+@mixin translateZ ($z) {
+    -webkit-transform: translateZ($z);
+    -moz-transform: translateZ($z);
+    -ms-transform: translateZ($z);
+    -o-transform: translateZ($z);
+    transform: translateZ($z);
+}
+
+@mixin rotate($x) {
+    -moz-transform: rotate($x);
+    -webkit-transform: rotate($x);
+    -o-transform: rotate($x);
+    -ms-transform: rotate($x);
+    transform: rotate($x);
+}
+
+@mixin blur ($blur) {
+    -webkit-filter: grayscale(0.2) blur($blur);
+    -moz-filter: grayscale(0.2) blur($blur);
+    -o-filter: grayscale(0.2) blur($blur);
+    -ms-filter: grayscale(0.2) blur($blur);
+    filter: grayscale(0.2) blur($blur);
+}
+
+@mixin animation($name, $duration, $iteration-count, $timing-function) {
+    -webkit-animation-name: $name;
+    -webkit-animation-duration: $duration;
+    -webkit-animation-iteration-count: $iteration-count;
+    -webkit-animation-timing-function: $timing-function;
+    -moz-animation-name: $name;
+    -moz-animation-duration: $duration;
+    -moz-animation-iteration-count: $iteration-count;
+    -moz-animation-timing-function: $timing-function;
+    -ms-animation-name: $name;
+    -ms-animation-duration: $duration;
+    -ms-animation-iteration-count: $iteration-count;
+    -ms-animation-timing-function: $timing-function;
+    animation-name: $name;
+    animation-duration: $duration;
+    animation-iteration-count: $iteration-count;
+    animation-timing-function: $timing-function;
+}
+
+@mixin animation-duration-time ($duration){
+    -webkit-animation-duration: $duration;
+    -o-animation-duration: $duration;
+    -moz-animation-duration: $duration;
+    animation-duration: $duration;
+}
+
+@mixin animation-delay ($delay){
+    -webkit-animation-delay: $delay;
+    -o-animation-delay: $delay;
+    -moz-animation-delay: $delay;
+    animation-delay: $delay;
+}
+
+@mixin placeholder {
+    $placeholders: ":-webkit-input" ":-moz" "-moz" "-ms-input";
+    @each $placeholder in $placeholders {
+        &:#{$placeholder}-placeholder {
+            @content;
+        }
+    }
+}
+
+// Background Gradient: Top to Bottom
+@mixin bg-gradient-t2b($start-colour, $end-colour) {
+    background-color: $start-colour;
+    background-image: -webkit-gradient(linear, left top, left bottom, from($start-colour), to($end-colour));
+    background-image: -webkit-linear-gradient(top, $start-colour, $end-colour);
+    background-image:    -moz-linear-gradient(top, $start-colour, $end-colour);
+    background-image:     -ms-linear-gradient(top, $start-colour, $end-colour);
+    background-image:      -o-linear-gradient(top, $start-colour, $end-colour);
+    background-image:         linear-gradient(top, $start-colour, $end-colour);
+    filter:            progid:DXImageTransform.Microsoft.gradient(start-colourStr='#{$start-colour}', end-colourStr='#{$end-colour}');
+}
+
+// triangles mixing
+@mixin triangle($size, $color, $direction) {
+    $width: nth($size, 1);
+    $height: nth($size, length($size));
+    $foreground-color: nth($color, 1);
+    $background-color: if(length($color) == 2, nth($color, 2), transparent);
+    height: 0;
+    width: 0;
+
+    @if ($direction == up) or ($direction == down) or ($direction == right) or ($direction == left) {
+        $width: $width / 2;
+        $height: if(length($size) > 1, $height, $height/2);
+
+        @if $direction == up {
+            border-bottom: $height solid $foreground-color;
+            border-left: $width solid $background-color;
+            border-right: $width solid $background-color;
+        } @else if $direction == right {
+            border-bottom: $width solid $background-color;
+            border-left: $height solid $foreground-color;
+            border-top: $width solid $background-color;
+        } @else if $direction == down {
+            border-left: $width solid $background-color;
+            border-right: $width solid $background-color;
+            border-top: $height solid $foreground-color;
+        } @else if $direction == left {
+            border-bottom: $width solid $background-color;
+            border-right: $height solid $foreground-color;
+            border-top: $width solid $background-color;
+        }
+    } @else if ($direction == up-right) or ($direction == up-left) {
+        border-top: $height solid $foreground-color;
+
+        @if $direction == up-right {
+            border-left:  $width solid $background-color;
+        } @else if $direction == up-left {
+            border-right: $width solid $background-color;
+        }
+    } @else if ($direction == down-right) or ($direction == down-left) {
+        border-bottom: $height solid $foreground-color;
+
+        @if $direction == down-right {
+            border-left:  $width solid $background-color;
+        } @else if $direction == down-left {
+            border-right: $width solid $background-color;
+        }
+    } @else if ($direction == inset-up) {
+        border-color: $background-color $background-color $foreground-color;
+        border-style: solid;
+        border-width: $height $width;
+    } @else if ($direction == inset-down) {
+        border-color: $foreground-color $background-color $background-color;
+        border-style: solid;
+        border-width: $height $width;
+    } @else if ($direction == inset-right) {
+        border-color: $background-color $background-color $background-color $foreground-color;
+        border-style: solid;
+        border-width: $width $height;
+    } @else if ($direction == inset-left) {
+        border-color: $background-color $foreground-color $background-color $background-color;
+        border-style: solid;
+        border-width: $width $height;
+    }
+}
+// triangles mixing usage examples
+// @include triangle(12px, gray, down);
+// @include triangle(12px 6px, gray lavender, up-left);
+
+@mixin opacity($value){
+    $IEValue: $value*100;
+    opacity: $value;
+    -ms-filter: "progid:DXImageTransform.Microsoft.Alpha(Opacity="+$IEValue+")";
+    filter: alpha(opacity=$IEValue);
+}

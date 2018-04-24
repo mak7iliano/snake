@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Super Snake</title>
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    <meta name="keywords" content="" />
+    <meta name="author" content="" />
+    <link href="https://fonts.googleapis.com/css?family=Press+Start+2P" rel="stylesheet">
+
+    <script type="text/javascript" src="_js/jquery-1.8.3.min.js"></script>
+    <script type="text/javascript" src="_js/main.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="_css/main.css" />
+</head>
+<body>
+    <div class="sn-content-wrapper">
+        <div class="sn-main-wrapper js-main-wrapper">
+            <div class="sn-element start js-element" style="left: 320px; top: 240px;" data-left="320" data-top="240"></div>
+            <div class="sn-element next" style="left: 300px; top: 240px;" data-left="300" data-top="240"></div>
+            <div class="sn-element next" style="left: 280px; top: 240px;" data-left="280" data-top="240"></div>
+            <div class="sn-element next" style="left: 260px; top: 240px;" data-left="260" data-top="240"></div>
+        </div>
+
+        <button class="js-start control">Start</button>
+        <div class="end-message">
+            game over, motherfucker
+
+            <button class="restart" onclick="location.reload();">Restart</button>
+        </div>
+    </div>
+
+    <div class="sn-content-score">
+        <div class="el">
+            Level: <span class="score-level">0</span>
+        </div>
+        <div class="el">
+            Score: <span class="score-value">0</span>
+        </div>
+        <div class="el hs-wrap" style="display: none;">
+            Hight score: <span class="hight-score-value">0</span>
+        </div>
+    </div>
+
+    <div class="js-part"></div>
+</body>
+</html>

@@ -1,0 +1,199 @@
+// colors
+$colorBrand: #0084ff;
+$colorBrandSecondary: #ff7200;
+$colorImportant: #ea3a3c;
+$colorSuccess: #00ad5d;
+$colorSemiDark: #8c8c8c;
+$colorBg: #f5f5f5;
+$colorBorder: rgba(0, 0, 0, 0.05);
+
+
+// typography
+$fontBase: 'Press Start 2P', cursive;
+$fontSizeBase: 13px;
+
+
+@import 'mixins';
+
+
+html, body {
+    height: 100%;
+    width: 100%;
+    background: #ffffff;
+}
+
+body {
+    background: url("../_images/bg.jpg") center center no-repeat;
+    background-size: cover;
+    position: relative;
+
+    &:before {
+        content: '';
+        position: absolute;
+        z-index: 1000;
+        top: 50%;
+        left: 50%;
+        @include translateXY(-50%, -50%);
+        width: 128px;
+        height: 128px;
+        background: url("../_images/pause.png") center center #ffffff;
+        opacity: 0;
+        @include transition-duration(0.3s);
+        z-index: -1;
+        box-shadow: 0 0 0 1000px #ffffff;
+    }
+
+    &.paused:before {
+        opacity: 0.7  ;
+        z-index: 100;
+    }
+}
+
+body, form, div, p, a, img, h1, h2, h3, h4, h5, h6, table, table tr, table td {
+    border: none;
+    color: #000000;
+    font-family: $fontBase;
+    font-size: $fontSizeBase;
+    font-style: normal;
+    font-weight: normal;
+    margin: 0;
+    padding: 0;
+}
+
+button,
+input,
+textarea,
+select {
+    outline: none;
+    font-family: $fontBase;
+    font-size: $fontSizeBase;
+    @include box-sizing($bb);
+}
+
+input::-moz-focus-inner {
+    border: 0;
+    padding: 0;
+}
+
+a {
+    text-decoration: underline;
+    outline: none;
+}
+
+a:hover {
+    text-decoration: none;
+}
+
+h1, h2 {
+    font-size: 20px;
+    padding: 0 0 10px 0;
+    color: #545454;
+}
+
+.clear {
+    clear: both;
+    font-size: 0;
+    line-height: 0;
+    height: 0;
+}
+
+.sn-content-score {
+    background-color: rgba(0, 0, 0, 0.1);
+    padding: 30px;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    @include box-sizing($bb);
+    text-align: center;
+    //display: none;
+
+    .el {
+        text-align: left;
+        display: inline-block;
+        margin: 0 30px;
+        font-size: $fontSizeBase + 10;
+        width: 200px;
+        white-space: nowrap;
+        color: #ffffff;
+    }
+}
+
+.sn-content-wrapper {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    @include translateXY(-50%, -50%);
+    overflow: hidden;
+    background-color: rgb(255, 255, 255);
+    box-shadow: 0 0 0 20px rgba(0, 0, 0, 0.1);
+
+    .control {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        @include translateXY(-50%, -50%);
+        background-color: $colorBrandSecondary;
+        width: 250px;
+        height: 70px;
+        color: #ffffff;
+        border: none;
+        padding: 0;
+        box-shadow: 0 0 0 1000px rgba(255, 255, 255, 0.8);
+        font-size: $fontSizeBase + 10;
+        text-transform: uppercase;
+    }
+
+    .end-message {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        @include translateXY(-50%, -50%);
+        font-size: $fontSizeBase + 10;
+        text-align: center;
+        line-height: 50px;
+        text-transform: uppercase;
+        display: none;
+
+        .restart {
+            margin: 30px 0 0 0;
+            display: inline-block;
+            background-color: #000000;
+            width: 250px;
+            height: 70px;
+            color: #ffffff;
+            border: none;
+            padding: 0;
+            font-size: $fontSizeBase + 10;
+            text-transform: uppercase;
+        }
+    }
+}
+
+.sn-main-wrapper {
+    width: 700px;
+    height: 500px;
+
+    &.gameover {
+        border-color: $colorImportant;
+        background-color: rgba($colorImportant, 0.5);
+    }
+}
+
+.sn-element {
+    width: 20px;
+    height: 20px;
+    border: 1px solid $colorSuccess;
+    box-shadow: 0 0 10px $colorSuccess inset;
+    @include box-sizing($bb);
+    position: absolute;
+}
+
+.sn-part {
+    width: 20px;
+    height: 20px;
+    border: 1px solid $colorBrandSecondary;
+    box-shadow: 0 0 10px $colorBrandSecondary inset;
+    @include box-sizing($bb);
+    position: absolute;
+}
